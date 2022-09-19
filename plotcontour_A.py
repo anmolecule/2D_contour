@@ -1,3 +1,8 @@
+# Author: Anmol Kumar
+# Date: 02/09/2021
+
+# Usage: python plotcontour_A.py csvfile HeaderContainingEnergy
+
 import os,sys
 import pandas as pd
 import numpy as np
