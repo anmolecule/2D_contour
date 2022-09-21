@@ -41,7 +41,7 @@ def plotxyzcontour(xi,yi,zi,zch=None):
     mzch=zch.replace('/', '')
     plt.savefig("contour_"+mzch+".png",dpi=600)
     #plt.show()
-    print ("Successfully saved contour in contour_%s.png(mzch)")
+    print ("Successfully saved contour in contour_%s.png"%(mzch))
 
 
 if __name__ == "__main__":
