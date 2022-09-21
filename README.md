@@ -19,4 +19,4 @@ The input csv file should have following format (Check sample.csv):
 Else, tweak the code before use.
 
 Expected Output:
-![alt text](https://github.com/anmolecule/2D_contour/contour_Energy.png?raw=true)
+![alt text](https://github.com/anmolecule/2D_contour/blob/main/contour_Energy.png?raw=true)
