@@ -1,11 +1,6 @@
 import os,sys
 import pandas as pd
 import numpy as np
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
-import matplotlib.tri as tri
-from scipy.interpolate import griddata
-plt.style.use('seaborn-white')
 
 def getxyz(filename):
     base=os.path.basename(filename)
@@ -47,26 +42,6 @@ base=os.path.basename(sys.argv[1])
 tbase=base.split('-')[0].lower()
 x=np.array(x)
 y=np.array(y)
-#fig, axs = plt.subplots(len(list(ed.keys())),1,figsize=(8,27)) #,dpi=300)
-#xi = np.linspace(-180, 180, 25)
-#yi = np.linspace(-180, 180, 25)
-xi = np.linspace(-180, 180, 13)
-yi = np.linspace(-180, 180, 13)
-XI,YI=np.meshgrid(xi,yi)
 for i,k in enumerate(list(ed.keys())):
    fig, axs = plt.subplots(figsize=(8,8)) #,dpi=300)
    z=np.array(ed[k])
-   zi = griddata((x, y), z, (XI,YI), method='cubic')
-   axs.contour(xi, yi, zi, levels=13, linewidths=0.5, colors='k')
-   cntur = axs.contourf(xi, yi, zi, levels=13, cmap="RdBu_r")
-   fig.colorbar(cntur, ax=axs)
-   axs.set(xlim=(-180, 180), ylim=(-180, 120))
-   axs.set_xticks(np.arange(-180,181,30))
-   axs.set_yticks(np.arange(-180,121,30))
-   axs.set_aspect('equal', adjustable='box')
-   plt.title('Contour Plot for '+k) #(%d points, %d grid points)' %
-   plt.tight_layout()
-   nk=k.replace('/', '')
-   print (nk)
-   plt.savefig(tbase+"_contour_"+nk+".png",dpi=300)
-   plt.show()
