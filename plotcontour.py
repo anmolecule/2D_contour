@@ -2,7 +2,7 @@ __author__ = "Anmol Kumar"
 __date__   = "02/09/2021"
 __modified__ = "21/09/2022"
 
-# Usage: python plotcontour_A.py csvfile HeaderContainingEnergy
+# Usage: python plotcontour.py csvfile HeaderContainingEnergy
 # Aim: Take Phi and Psi data distributed in a range -180 to 180
 #      Sort the data
 #      Generate 2D grid -180 to 180; stepsize 30.
