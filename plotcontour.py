@@ -26,8 +26,8 @@ def getxyzcontour(df,xch='Phi',ych='Psi',zch=None):
     x=df_sorted['Phi'].to_numpy() 
     y=df_sorted['Psi'].to_numpy() 
     z=df_sorted[sys.argv[2]].to_numpy()
-    xi = np.linspace(-180, 180, 30)
-    yi = np.linspace(-180, 180, 30)
+    xi = np.linspace(-180, 180, 30)   # xi stepsize = 12 degrees
+    yi = np.linspace(-180, 180, 30)   # yi stepsize = 12 degrees
     XI,YI=np.meshgrid(xi,yi)
     zi = griddata((x, y), z, (XI,YI), method='cubic')
     return (xi,yi,zi)
