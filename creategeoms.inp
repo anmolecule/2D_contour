@@ -1,0 +1,57 @@
+* Modify dihedrals to create structures for scan 
+* 
+
+ioformat extended
+
+if @?workdir eq 1 then
+   set workdir @workdir
+else
+   set workdir .
+endif
+
+set toppar toppar
+stream toppar.str
+
+stream @str
+
+set residue @resi
+
+read sequence @resi 1
+generate @resi first none last none setup warn
+
+ic generate
+ic build
+!read coor pdb name @resipdb
+read coor card name @resicrd
+ic print
+ic fill 
+ic print
+set value1 -180
+set value2 -180
+label repeat
+ic edit
+  dihedral 1 C2 1 N1 1 C3 1 C5 @value1 
+  dihedral 1 N1 1 C3 1 C5 1 N2 @value2 
+end
+coor init sele all end 
+ic seed 1 C1 1 C2 1 N1
+ic build
+!coor print
+cons fix sele (type C2 .or. type N1 .or. type C3 .or. type C5 .or. type N2) end ! FORCE 9999.0 MAIN PERIOD 0   ! Fix the concerned dihedral
+MINI CONJ nstep 1000 nprint 20 inbfrq 1000 cutnb 999.
+MINI ABNR nstep 500 tolgrd 0.00001
+open unit 30 write form name @workdir/@resi_@value1_@value2.pdb 
+write coor pdb unit 30 
+close unit 30
+incr value2 by 15
+if @value2 eq 180 then
+   if @value1 eq 180 then
+      stop
+   else
+      incr value1 by 15
+      set value2 -180
+      goto repeat
+   endif
+else 
+   goto repeat
+endif
