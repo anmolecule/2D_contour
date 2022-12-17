@@ -21,3 +21,11 @@ Else, tweak the code before use.
 Expected Output:
 
 ![alt text](https://github.com/anmolecule/2D_contour/blob/main/contour_Energy.png?raw=true)
+
+## Additional Information
+
+You can utilize creategeoms.inp to generate scan coordinates about two adjacent dihedral. 
+If you can modify the script, you can also use it for bond and angle scans.
+Once you have individual scan structures, you can create Psi4 input file using template.py
+After running QM calculations, you can tabulate your results in form of csv file and use
+plotcontour.py for plotting.
